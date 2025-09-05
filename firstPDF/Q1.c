@@ -2,12 +2,8 @@
 
 int main() {
     
-    printf("1.         *\n");
-    printf("2.        *\n");
-    printf("3.       *\n");
-    printf("4. *    *\n");
-    printf("5.  *  *\n");
-    printf("6.    *");
+    printf("1.         *\n2.        *\n3.       *\n4. *    *\n5.  *  *\n6.    *");
+    
 
     return 0;
 }
