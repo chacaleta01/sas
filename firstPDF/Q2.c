@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-const Pi = 3.14;
+const float Pi = 3.14;
 int main(){
 
     int r=10;
