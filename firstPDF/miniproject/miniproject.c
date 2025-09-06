@@ -3,7 +3,7 @@
 void ajouterEtudiant();
 void saisirNotes();
 void afficherEtudiants();
-
+void afficherBulletin();
 typedef struct 
 {
     char CNE [20];
@@ -31,28 +31,28 @@ int main (){
     case 1:{
         ajouterEtudiant();
     }break;
+
     case 2:{
         saisirNotes();
     }break;
+
     case 3:{
         afficherEtudiants();
     }break;
+
+    case 4:{
+        afficherBulletin();
+    }break;
+    
     case 0:{
             printf("ciao ");
         return 0;
-    default: 
         break;
     }
 
     }
 }
-    
 
-    
-
-    //printf("le CIN d'etuent est: %s\nle nom d'etudient est: %s\nle prenom d'etudient est: %s", classe[nombreEtudients-1].CNE, classe[nombreEtudients-1].Name, classe[nombreEtudients-1].Nickname);
-
-    
 }
 
 
@@ -106,9 +106,25 @@ void afficherEtudiants(){
     printf(" ] | %.2f |\n", classe[nombreEtudients-n].moyenne); 
     
     }
+    return;
+}
+
+void afficherBulletin(){
+    int choisirBulletin, n;
     
+    for ( n  = 1; n <= nombreEtudients; n++)
+    {
+        printf("%d_'%s %s'\n", n, classe[nombreEtudients-n].Nickname, classe[nombreEtudients-n].Name);
+    }
     
-    
+    printf("choisir le bulletin de quelle etudient: ");
+    scanf ("%d", &choisirBulletin);
+
+        for (int i = 0; i < 4; i++)
+     {
+         printf("la %d note est: %.2f \n", n, classe[choisirBulletin-1].notes[i]);
+     }
+        printf("La moyenne generale d'etudient est: %.2f\n", classe[choisirBulletin-1].moyenne);
 
     return;
 }
