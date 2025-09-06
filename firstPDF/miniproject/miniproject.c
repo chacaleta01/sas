@@ -78,17 +78,26 @@ void ajouterEtudiant(){
 void saisirNotes(){
 
     float sommeNotes;
-    int num=1;
+    int num=1, choisirEtudiant;
     float moyenne;
+
+    for ( int n  = 0; n <= nombreEtudients; n++)
+    {
+        printf("%d_'%s %s'\n", n+1, classe[n].Nickname, classe[n].Name);
+    }
+
+    printf("choisir l'etudiant: ");
+    scanf ("%d", &choisirEtudiant);
+
     for (int i = 0; i < 4; i++)
     {
-        printf("entrez la note %d: de l'etudient %s %s:", num, classe[nombreEtudients-1].Name, classe[nombreEtudients-1].Nickname );
-        scanf("%f", &classe[nombreEtudients-1].notes[i]); 
-        sommeNotes += classe[nombreEtudients-1].notes[i];
+        printf("entrez la note %d: de l'etudient %s %s:", num, classe[choisirEtudiant-1].Name, classe[choisirEtudiant-1].Nickname );
+        scanf("%f", &classe[choisirEtudiant-1].notes[i]); 
+        sommeNotes += classe[choisirEtudiant-1].notes[i];
         num++;
     }
-    classe[nombreEtudients-1].moyenne = sommeNotes / 4;
-    printf("la note moyenne de l'etudient '%s %s' est: %.2f\n", classe[nombreEtudients-1].Nickname, classe[nombreEtudients-1].Name, classe[nombreEtudients-1].moyenne); 
+    classe[choisirEtudiant-1].moyenne = sommeNotes / 4;
+    printf("la note moyenne de l'etudient '%s %s' est: %.2f\n", classe[choisirEtudiant-1].Nickname, classe[choisirEtudiant-1].Name, classe[choisirEtudiant-1].moyenne); 
     return ;
 }
 
@@ -112,9 +121,9 @@ void afficherEtudiants(){
 void afficherBulletin(){
     int choisirBulletin, n;
     
-    for ( n  = 1; n <= nombreEtudients; n++)
+    for ( n  = 0; n <= nombreEtudients; n++)
     {
-        printf("%d_'%s %s'\n", n, classe[nombreEtudients-n].Nickname, classe[nombreEtudients-n].Name);
+        printf("%d_'%s %s'\n", n+1, classe[n].Nickname, classe[n].Name);
     }
     
     printf("choisir le bulletin de quelle etudient: ");
