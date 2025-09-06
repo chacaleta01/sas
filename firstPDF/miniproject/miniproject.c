@@ -2,6 +2,7 @@
 
 void ajouterEtudiant();
 void saisirNotes();
+void calculerMoyenneEtudiant();
 
 typedef struct 
 {
@@ -32,7 +33,9 @@ int main (){
     case 2:{
         saisirNotes();
     }break;
-    
+    case 3:{
+        calculerMoyenneEtudiant();
+    }break;
     default: 
         break;
     }
@@ -51,10 +54,10 @@ void ajouterEtudiant(){
     printf("entrer le CNE/ID d'etudient : ");
     scanf("%s",classe[nombreEtudients].CNE);
     
-    printf("\nentrer le nom d'etudient : ");
+    printf("entrer le nom d'etudient : ");
     scanf("%s",classe[nombreEtudients].Name);
 
-    printf("\nentrer le prenom d'etudient : ");
+    printf("entrer le prenom d'etudient : ");
     scanf("%s",classe[nombreEtudients].Nickname);
 
     nombreEtudients++;
@@ -64,19 +67,27 @@ void ajouterEtudiant(){
 }
 
 void saisirNotes(){
-    
-    int sommeNotes, num=1;
+
+    float sommeNotes;
+    int num=1;
+    float moyenne;
     for (int i = 0; i < 4; i++)
     {
-        printf("entrez la note %d: de l'etudient %s %s:", num, classe[0].Name, classe[0].Nickname );
-        scanf("%f", classe[nombreEtudients-1].notes); 
+        printf("entrez la note %d: de l'etudient %s %s:", num, classe[nombreEtudients-1].Name, classe[nombreEtudients-1].Nickname );
+        scanf("%f", &classe[nombreEtudients-1].notes[i]); 
         sommeNotes += classe[nombreEtudients-1].notes[i];
         num++;
     }
-    main();
-    
-
-    
-    
+    classe[nombreEtudients-1].moyenne = sommeNotes / 4;
+    main(); 
     return ;
+}
+
+
+void calculerMoyenneEtudiant(){
+    printf("la note moyenne de l'etudient '%s %s' est: %.2f\n", classe[nombreEtudients-1].Nickname, classe[nombreEtudients-1].Name, classe[nombreEtudients-1].moyenne);
+
+    main();
+
+    return;
 }
