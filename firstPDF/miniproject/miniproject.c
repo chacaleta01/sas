@@ -2,7 +2,7 @@
 
 void ajouterEtudiant();
 void saisirNotes();
-void calculerMoyenneEtudiant();
+void afficherEtudiants();
 
 typedef struct 
 {
@@ -21,8 +21,9 @@ student classe[30];
 int main (){
     int choisir ;
     
-
-    printf("1) Ajouter un étudiant\n2) Saisir les notes d’un étudiant\n3) Afficher tous les étudiants\n4) Afficher bulletin d’un étudiant\n5) Calculer la moyenne générale\n0) Quitter\n");
+    while (1)
+    {
+        printf("1) Ajouter un étudiant\n2) Saisir les notes d’un étudiant\n3) Afficher tous les étudiants\n4) Afficher bulletin d’un étudiant\n5) Calculer la moyenne générale\n0) Quitter\n");
     printf("entrez un nombre de 0 a 5 :");
     scanf("%d",&choisir);
     switch (choisir)
@@ -34,16 +35,24 @@ int main (){
         saisirNotes();
     }break;
     case 3:{
-        calculerMoyenneEtudiant();
+        afficherEtudiants();
     }break;
+    case 0:{
+            printf("ciao ");
+        return 0;
     default: 
         break;
     }
 
+    }
+}
+    
+
+    
 
     //printf("le CIN d'etuent est: %s\nle nom d'etudient est: %s\nle prenom d'etudient est: %s", classe[nombreEtudients-1].CNE, classe[nombreEtudients-1].Name, classe[nombreEtudients-1].Nickname);
 
-    return 0;
+    
 }
 
 
@@ -62,7 +71,7 @@ void ajouterEtudiant(){
 
     nombreEtudients++;
 
-    main();
+    //main();
     return ;
 }
 
@@ -79,15 +88,27 @@ void saisirNotes(){
         num++;
     }
     classe[nombreEtudients-1].moyenne = sommeNotes / 4;
-    main(); 
+    printf("la note moyenne de l'etudient '%s %s' est: %.2f\n", classe[nombreEtudients-1].Nickname, classe[nombreEtudients-1].Name, classe[nombreEtudients-1].moyenne); 
     return ;
 }
 
 
-void calculerMoyenneEtudiant(){
-    printf("la note moyenne de l'etudient '%s %s' est: %.2f\n", classe[nombreEtudients-1].Nickname, classe[nombreEtudients-1].Name, classe[nombreEtudients-1].moyenne);
+void afficherEtudiants(){
+    for (int n = 1; n <= nombreEtudients; n++)
+    {
 
-    main();
+       printf("| %s | %s | %s |[", classe[nombreEtudients-n].CNE, classe[nombreEtudients-n].Name, classe[nombreEtudients-n].Nickname);
+
+    for (int i = 0; i < 4; i++)
+    {
+        printf(" %.2f |", classe[nombreEtudients-n].notes[i]);
+    }
+    printf(" ] | %.2f |\n", classe[nombreEtudients-n].moyenne); 
+    
+    }
+    
+    
+    
 
     return;
 }
