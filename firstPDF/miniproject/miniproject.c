@@ -8,6 +8,8 @@ typedef struct student
     char *CNE;
     char *Name;
     char *Nickname;
+    float notes;
+    float moyenne;
 } student;
 
 
@@ -22,7 +24,7 @@ int main (){
     case 1:{
         ajouterEtudiant();
     }break;
-    
+
     
     default: 
         break;
@@ -46,4 +48,5 @@ void ajouterEtudiant(){
     printf("\nentrer le prenom d'etudient : ");
     scanf("%s",abdou.Nickname);
 
+    return ;
 }
