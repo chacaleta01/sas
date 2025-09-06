@@ -4,6 +4,8 @@ void ajouterEtudiant();
 void saisirNotes();
 void afficherEtudiants();
 void afficherBulletin();
+void calculerMoyenneGenerale();
+
 typedef struct 
 {
     char CNE [20];
@@ -44,6 +46,10 @@ int main (){
         afficherBulletin();
     }break;
     
+    case 5:{
+        calculerMoyenneGenerale();
+    }break;
+
     case 0:{
             printf("ciao ");
         return 0;
@@ -54,8 +60,6 @@ int main (){
 }
 
 }
-
-
 
 void ajouterEtudiant(){
     
@@ -81,7 +85,7 @@ void saisirNotes(){
     int num=1, choisirEtudiant;
     float moyenne;
 
-    for ( int n  = 0; n <= nombreEtudients; n++)
+    for ( int n  = 0; n < nombreEtudients; n++)
     {
         printf("%d_'%s %s'\n", n+1, classe[n].Nickname, classe[n].Name);
     }
@@ -101,12 +105,11 @@ void saisirNotes(){
     return ;
 }
 
-
 void afficherEtudiants(){
-    for (int n = 1; n <= nombreEtudients; n++)
+    for (int n = 0; n <= nombreEtudients; n++)
     {
 
-       printf("| %s | %s | %s |[", classe[nombreEtudients-n].CNE, classe[nombreEtudients-n].Name, classe[nombreEtudients-n].Nickname);
+       printf("| %s | %s | %s |[", classe[n].CNE, classe[n].Name, classe[n].Nickname);
 
     for (int i = 0; i < 4; i++)
     {
@@ -121,7 +124,7 @@ void afficherEtudiants(){
 void afficherBulletin(){
     int choisirBulletin, n;
     
-    for ( n  = 0; n <= nombreEtudients; n++)
+    for ( n  = 0; n < nombreEtudients; n++)
     {
         printf("%d_'%s %s'\n", n+1, classe[n].Nickname, classe[n].Name);
     }
@@ -131,9 +134,24 @@ void afficherBulletin(){
 
         for (int i = 0; i < 4; i++)
      {
-         printf("la %d note est: %.2f \n", n, classe[choisirBulletin-1].notes[i]);
+         printf("la %d note est: %.2f \n", i+1, classe[choisirBulletin-1].notes[i]);
      }
         printf("La moyenne generale d'etudient est: %.2f\n", classe[choisirBulletin-1].moyenne);
+
+    return;
+}
+
+void calculerMoyenneGenerale(){
+
+    float sommeMoyenne, moyenneGenerale;
+
+    for (int i = 0; i < nombreEtudients; i++)
+    {
+        sommeMoyenne += classe[i].moyenne;
+    }
+    
+    moyenneGenerale = sommeMoyenne / nombreEtudients;
+    printf("la moyenne generale du claase est %.2f\n", moyenneGenerale);
 
     return;
 }
