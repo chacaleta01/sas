@@ -75,7 +75,6 @@ void ajouterEtudiant(){
 
     nombreEtudients++;
 
-    //main();
     return ;
 }
 
