@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 void ajouterEtudiant();
 void saisirNotes();
@@ -67,11 +68,14 @@ void ajouterEtudiant(){
     printf("entrer le CNE/ID d'etudient : ");
     scanf("%s",classe[nombreEtudients].CNE);
     
+
     printf("entrer le nom d'etudient : ");
-    scanf("%s",classe[nombreEtudients].Name);
+    scanf(" %[^\n]%*c", classe[nombreEtudients].Name);
+
+    
 
     printf("entrer le prenom d'etudient : ");
-    scanf("%s",classe[nombreEtudients].Nickname);
+    scanf("%[^\n]%*c",classe[nombreEtudients].Nickname);
 
     nombreEtudients++;
 
