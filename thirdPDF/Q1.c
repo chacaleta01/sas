@@ -29,7 +29,7 @@ int main(void) {
         }
     }
     if (!found)
-        printf("Aucun");
+        printf("Aucun chiffre repete.\n");
     
 
     return 0;
