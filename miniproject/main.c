@@ -8,7 +8,7 @@ void calculerMoyenneGenerale();
 
 typedef struct 
 {
-    char CNE [20];
+    char CNE [6];
     char Name[40];
     char Nickname[40];
     float notes[4];
@@ -82,7 +82,6 @@ void saisirNotes(){
 
     float sommeNotes;
     int num=1, choisirEtudiant;
-    float moyenne;
 
     for ( int n  = 0; n < nombreEtudients; n++)
     {
@@ -105,10 +104,10 @@ void saisirNotes(){
 }
 
 void afficherEtudiants(){
-    for (int n = 0; n <= nombreEtudients; n++)
+    for (int n = 0; n < nombreEtudients; n++)
     {
 
-       printf("| %s | %s | %s |[", classe[n].CNE, classe[n].Name, classe[n].Nickname);
+       printf("| %s | %s  %s |[", classe[n].CNE, classe[n].Name, classe[n].Nickname);
 
     for (int i = 0; i < 4; i++)
     {
