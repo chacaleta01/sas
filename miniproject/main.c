@@ -1,12 +1,13 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include<stdlib.h>
 
 void ajouterEtudiant();
 void saisirNotes();
 void afficherEtudiants();
 void afficherBulletin();
 void calculerMoyenneGenerale();
+void afficherPlusGrandMoyenne();
 
 typedef struct 
 {
@@ -22,55 +23,52 @@ int nombreEtudients = 0;
 student classe[30];
 int retour;
 
-
 int main (){
     int choisir ;
     
     while (1)
     {
-        printf("1) Ajouter un étudiant\n2) Saisir les notes d’un étudiant\n3) Afficher tous les étudiants\n4) Afficher bulletin d’un étudiant\n5) Calculer la moyenne générale\n0) Quitter\n");
-    printf("entrez un nombre de 0 a 5 :");
+        printf("1) Ajouter un étudiant\n2) Saisir les notes d’un étudiant\n3) Afficher tous les étudiants\n4) Afficher bulletin d’un étudiant\n5) Calculer la moyenne générale\n6)Afficher la plus grand moyenne\n0) Quitter\n");
+    printf("entrez un nombre de 0 a 6 :");
     scanf("%d",&choisir);
     switch (choisir)
     {
     case 1:{
-        system("cls");
         ajouterEtudiant();
     }break;
 
     case 2:{
-        system("cls");
         saisirNotes();
     }break;
 
     case 3:{
-        system("cls");
         afficherEtudiants();
     }break;
 
     case 4:{
-        system("cls");
         afficherBulletin();
     }break;
     
     case 5:{
-        system("cls");
         calculerMoyenneGenerale();
     }break;
 
+    case 6:{
+        afficherPlusGrandMoyenne();
+    }break;
     case 0:{
-        system("cls");
             printf("ciao ");
         return 0;
         break;
     }
-    
+
     }
 }
 
 }
 
 void ajouterEtudiant(){
+    system("cls");
     
     
     printf("entrer le CNE/ID d'etudient : ");
@@ -86,12 +84,12 @@ void ajouterEtudiant(){
     scanf("%[^\n]%*c",classe[nombreEtudients].Nickname);
 
     nombreEtudients++;
-    system("cls");
-    
+
     return ;
 }
 
 void saisirNotes(){
+    system("cls");
 
     float sommeNotes;
     int num=1, choisirEtudiant;
@@ -113,14 +111,11 @@ void saisirNotes(){
     }
     classe[choisirEtudiant-1].moyenne = sommeNotes / 4;
     printf("la note moyenne de l'etudient '%s %s' est: %.2f\n", classe[choisirEtudiant-1].Nickname, classe[choisirEtudiant-1].Name, classe[choisirEtudiant-1].moyenne); 
-    
-    printf("entrez 0 pour retourner au menu: ");
-    scanf("%d",&retour);
-    system("cls");
     return ;
 }
 
 void afficherEtudiants(){
+    system("cls");
     for (int n = 0; n < nombreEtudients; n++)
     {
 
@@ -128,19 +123,16 @@ void afficherEtudiants(){
 
     for (int i = 0; i < 4; i++)
     {
-        printf(" %.2f |", classe[nombreEtudients-n].notes[i]);
+        printf(" %.2f |", classe[n].notes[i]);
     }
-    printf(" ] | %.2f |\n", classe[nombreEtudients-n].moyenne); 
+    printf(" ] | %.2f |\n", classe[n].moyenne); 
     
     }
-    
-    printf("entrez 0 pour retourner au menu: ");
-    scanf("%d",&retour);
-    system("cls");
     return;
 }
 
 void afficherBulletin(){
+    system("cls");
     int choisirBulletin, n;
     
     for ( n  = 0; n < nombreEtudients; n++)
@@ -157,24 +149,44 @@ void afficherBulletin(){
      }
         printf("La moyenne generale d'etudient est: %.2f\n", classe[choisirBulletin-1].moyenne);
 
-        printf("entrez 0 pour retourner au menu: ");
-        scanf("%d",&retour);
-     system("cls");
     return;
 }
 
 void calculerMoyenneGenerale(){
+    system("cls");
+    float sommeMoyenne, moyenneGenerale;
 
-    float moyenneGenerale, sommmeMoyenne;
     for (int i = 0; i < nombreEtudients; i++)
     {
-        sommmeMoyenne += classe[i].moyenne;
+        sommeMoyenne += classe[i].moyenne;
     }
-    moyenneGenerale = sommmeMoyenne / nombreEtudients;
-
-    printf("la moyenne general du classe est: %.2f", moyenneGenerale);
-
-    printf("\nentrez '0' pour retourner au menu: ");
-    scanf("%d",&retour);
     
+    moyenneGenerale = sommeMoyenne / nombreEtudients;
+    printf("la moyenne generale du claase est %.2f\n", moyenneGenerale);
+    printf("entrez 0 pour retourner au menu: ");
+    scanf("%d",&retour);
+    system("cls");
+
+    return;
 }
+
+void afficherPlusGrandMoyenne() {
+    system("cls");
+    float temp ;
+    temp=classe[0].moyenne;
+
+    for (int i = 0; i < nombreEtudients; i++)
+    {
+        if (classe[i].moyenne >= temp)
+        {
+            temp = classe[i].moyenne;
+        }
+    }
+        printf("la plus grande moyenne est: %.2f\n", temp);
+    printf("entrez 0 pour retourner au menu: ");
+    scanf("%d",&retour);
+    system("cls");
+        return;
+    }
+    
+
